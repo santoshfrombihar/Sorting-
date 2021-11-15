@@ -1,0 +1,83 @@
+// c code 
+#include <iostream>
+
+void mergeSort(int a[], int i, int l);
+void merge(int a[], int l, int m, int h);
+
+int main() {
+    
+    int n; 
+    int a[20];
+    
+    printf("Enter length of array:-\n");
+    scanf("%d",&n);
+    
+    printf("Enter %d elements:-\n",n);
+    for(int i=0; i<n; i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    
+    mergeSort(a,0,n-1);
+    
+    printf("After Sorting:-\n");
+    for(int i=0; i<n; i++)
+    {
+        printf("%d ",a[i]);
+    }
+    
+    
+}
+
+
+void mergeSort(int a[], int l, int u){
+    
+    if(l<u)
+    {
+        int m=(l+u)/2;
+        mergeSort(a,l,m);
+        mergeSort(a,m+1,u);
+        merge(a,l,m,u);
+        
+    }
+    
+}
+
+
+
+void merge(int a[], int l, int m, int u){
+    int i,j,k,c[30];
+    
+    i=l;
+    j=m+1;
+    k=l;
+    
+    while(i<=m && j<=u)
+    {
+        if(a[i]<=a[j])
+        {
+            c[k]=a[i];
+            i++;
+        }
+        else
+        {
+            c[k]=a[j];
+            j++;
+        }
+        k++;
+    }
+    
+    while(i<m)
+    {
+        c[k]=a[i];
+        i++;
+        k++;
+    }
+    while(j<u)
+    {
+        c[k]=a[j];
+        j++;
+        k++;
+    }
+    
+}
